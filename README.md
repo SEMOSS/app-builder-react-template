@@ -21,3 +21,25 @@ cd scripts
 chmod +x sync-skills.sh
 ./sync-skills.sh
 ```
+
+## Build And Package
+
+Use the `build-and-package.sh` script to build the client and produce a distributable zip of the `assets/` directory.
+
+The script will:
+
+1. Run `pnpm install` in `assets/client`
+2. Run `pnpm run build` in `assets/client`
+3. Delete `assets/client/node_modules` so it isn't included in the archive
+4. Create `assets.zip` at the repository root containing everything inside `assets/` (the contents are at the root of the zip — there is no wrapping `assets/` folder)
+5. Run `pnpm install` again in `assets/client` to restore the local dev environment
+
+The resulting `assets.zip` is overwritten on each run.
+
+## Run The Build And Package Script
+
+```bash
+cd scripts
+chmod +x build-and-package.sh
+./build-and-package.sh
+```
